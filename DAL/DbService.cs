@@ -17,12 +17,12 @@ namespace DAL
         }
 
         /// <summary>
-        /// 
+        /// SQLite bağlantısı oluşturur ve mod_spatialite eklentisini yükler.
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Oluşturulan SQLite bağlantısı </returns>
         public SQLiteConnection CreateConnection()
         {
-            string modSpatialitePath = @"C:\Users\HP\Desktop\SpatialiteTest\SpatialiteTest\SpatialiteTest\mod_spatialite-5.1.0-win-amd64";
+            string modSpatialitePath = @"C:\Users\HP\Desktop\SpatialiteTest\SpatialiteTest\mod_spatialite-5.1.0-win-amd64";
             string currentPath = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.Process);
             Environment.SetEnvironmentVariable("PATH", currentPath+";"+modSpatialitePath,EnvironmentVariableTarget.Process);
 

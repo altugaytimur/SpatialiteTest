@@ -15,7 +15,7 @@ namespace SpatialiteTest.Extentions
     public static class ServicesExtentions
     {
         /// <summary>
-        /// 
+        /// Servislerin yapılandırılmasını sağlar.
         /// </summary>
         /// <param name="services"></param>
         public static void ConfigureServices(this IServiceCollection services )

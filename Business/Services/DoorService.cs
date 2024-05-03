@@ -18,7 +18,7 @@ public class DoorService : IDoorService
     }
 
     /// <summary>
-    /// 
+    /// Kapıların, binaların içinde mi dışında mı olduğunu kontrol eder ve içinde/dışında olduğuna göre inside_building   kolonunu günceller.
     /// </summary>
 
     public void CheckDoorsInsideBuildings()
@@ -73,7 +73,7 @@ public class DoorService : IDoorService
 
 
     /// <summary>
-    /// 
+    /// Kapıların sonuçlarını konsola yazdırır.
     /// </summary>
     public void PrintDoorResults()
     {
@@ -95,7 +95,7 @@ public class DoorService : IDoorService
     }
 
     /// <summary>
-    /// 
+    /// Kapı tablosunun şemasını konsola yazdırır.
     /// </summary>
     void PrintDoorSchema()
     {
@@ -117,7 +117,7 @@ public class DoorService : IDoorService
     }
 
     /// <summary>
-    /// 
+    /// Building_nodes tablosunun şemasını konsola yazdırır.
     /// </summary>
     void PrintBuildingNodesSchema()
     {

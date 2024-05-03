@@ -18,17 +18,14 @@ namespace Business.Services
         }
 
         /// <summary>
-        /// 
+        /// Building_nodes tablosundaki düğümleri kullanarak yeni binalar oluşturur. Var olan binaların id'lerini kontrol eder, eğer varsa siler ve tekrar ekler.
         /// </summary>
         public void CreateBuildingsFromNodes()
         {
-            // Var olan binanın id'sini kontrol etmek için SQL sorgusu
+            
             string sqlCheck = "SELECT id FROM building WHERE id = @id";
-
-            // Eğer varsa, binayı silmek için SQL sorgusu
             string sqlDelete = "DELETE FROM building WHERE id = @id";
 
-            // Yeni binayı eklemek için SQL sorgusu
             string sqlInsert = @"
                 INSERT INTO building (id, geom)
                 SELECT building_id, ST_MakePolygon(ST_AddPoint(line, StartPoint(line))) AS geom
@@ -58,12 +55,10 @@ namespace Business.Services
 
                 foreach (int buildingId in buildingIds)
                 {
-                    // Var olan binanın id'sini kontrol et
                     commandCheck.Parameters.Clear();
                     commandCheck.Parameters.AddWithValue("@id", buildingId);
                     var existingBuildingId = commandCheck.ExecuteScalar();
 
-                  
                     if (existingBuildingId != null)
                     {
                         commandDelete.Parameters.Clear();
@@ -72,18 +67,16 @@ namespace Business.Services
                         Console.WriteLine($"Var olan bina (ID: {buildingId}) silindi ve tekrar eklenecek.");
                     }
                 }
-
-                
                 commandInsert.ExecuteNonQuery();
 
-                PrintBuilding(); // Building tablosunu konsola yazdır
+                PrintBuilding();
 
             }
         }
 
 
         /// <summary>
-        /// 
+        ///  Building tablosundaki bina verilerini konsola yazdırır.
         /// </summary>
         public void PrintBuilding()
         {
@@ -107,7 +100,7 @@ namespace Business.Services
         }
 
         /// <summary>
-        /// 
+        /// Building tablosunun şemasını konsola yazdırır.
         /// </summary>
         void PrintBuildingSchema()
         {
