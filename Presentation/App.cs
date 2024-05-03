@@ -18,6 +18,9 @@ namespace Presentation
             _doorService = doorService;
         }
 
+        /// <summary>
+        /// Konsolda kullanıcıdan girdi alarak belirli işlemleri çalıştırır.
+        /// </summary>
         public void Run()
         {
             while (true)

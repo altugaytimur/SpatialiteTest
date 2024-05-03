@@ -9,9 +9,9 @@ namespace SpatialiteTest.Extentions
     public static class ConnectionsExtensions
     {
         /// <summary>
-        /// 
+        /// Bağlantı dizesini oluşturur.
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Oluşturulan bağlantı dizesi </returns>
         public static string GetConnectionString()
         {
             string destDbFilename = GetDatabaseFilename();
@@ -20,9 +20,9 @@ namespace SpatialiteTest.Extentions
         }
 
         /// <summary>
-        /// 
+        /// Veritabanı dosyasının konumunu belirler.
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Veritabanı dosyasının konumu </returns>
         private static string GetDatabaseFilename()
         {
             string pathTemplate = @"C:\Users\HP\Desktop\SpatialiteTest\SpatialiteTest\SpatialiteTest\template.sqlite";
