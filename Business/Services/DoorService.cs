@@ -38,17 +38,21 @@ public class DoorService : IDoorService
                     var doorGeom = reader["geom"];
 
                     string sqlCheckInside = @"
-                            UPDATE door SET inside_building =
+                             UPDATE door SET inside_building =
                             CASE
-                                WHEN @buildingId IS NULL THEN NULL
-                                WHEN EXISTS(
-                                    SELECT 1 FROM building
+                                WHEN @buildingId IS NULL THEN NULL -- Eşleşme yoksa null olacak
+                                WHEN NOT EXISTS (
+                                    SELECT 1 FROM building 
+                                    WHERE building.id = @buildingId
+                                ) THEN NULL -- Eşleşme yoksa null olacak
+                                WHEN EXISTS (
+                                    SELECT 1 FROM building 
                                     WHERE ST_Contains(building.geom, @doorGeom)
-                                    AND building.id=@buildingId)
-                                THEN 1
-                                ELSE 0
-                            END
-                            WHERE id = @doorId";
+                                    AND building.id = @buildingId
+                                ) THEN 1 -- Eşleşme varsa ve kapı bina içindeyse 1 olacak
+                                ELSE 0 -- Eşleşme varsa ve kapı bina dışında ise 0 olacak
+                            END 
+                        WHERE id = @doorId";
 
 
                     using (var updateCommand=new SQLiteCommand(sqlCheckInside, _connection))
@@ -59,7 +63,7 @@ public class DoorService : IDoorService
 
                         int affectedRows = updateCommand.ExecuteNonQuery();
 
-                        Console.WriteLine($"Kapı ID {doorId}: Konumu güncellendi, {affectedRows} kayıt etkilendi.");
+                        Console.WriteLine($"Kapı ID {doorId}: Konumu belirlendi, {affectedRows} kayıt güncellendi.");
                     }
 
                 }
