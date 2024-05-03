@@ -3,6 +3,9 @@ Spatiality:
 - In spatialite files, you can store verbal data as well as geometric data (point, line, area) in relational tables and use this data to create various data.
 Geographic queries (intersection, closest distance, Coordinate, etc.) can be made.
 
+template.sqlite:
+  - There are 3 tables in the file named building, building_nodes, door.
+     
 How the program works:
   - The program is a console application
   - When the user runs the program, 3 options appear,
