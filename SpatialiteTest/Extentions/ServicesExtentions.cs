@@ -20,7 +20,7 @@ namespace SpatialiteTest.Extentions
         /// <param name="services"></param>
         public static void ConfigureServices(this IServiceCollection services )
         {
-            var dbService = new DbService(GetConnectionString());
+            var dbService = new DbService(ConnectionsExtensions.GetConnectionString());
 
             services.AddSingleton(dbService);
             services
@@ -30,24 +30,6 @@ namespace SpatialiteTest.Extentions
             services.AddScoped<IBuiildingService,BuildingService>();
             services.AddScoped<IDoorService,DoorService>();
             services.AddSingleton<App>();
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        private static string GetConnectionString()
-        {
-            string pathTemplate = @"C:\Users\HP\Desktop\SpatialiteTest\SpatialiteTest\SpatialiteTest\template.sqlite";
-            string destDbFilename = @"C:\Users\HP\Desktop\SpatialiteTest\SpatialiteTest\SpatialiteTest\buildingDatabaseNew.sqlite";
-            if (File.Exists(destDbFilename))
-            {
-                File.Delete(destDbFilename);
-            }
-            File.Copy(pathTemplate, destDbFilename, true);
-
-            string connectionString = $"Data Source={destDbFilename};Version=3;";
-            return connectionString;
         }
     }
 }
